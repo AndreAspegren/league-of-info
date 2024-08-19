@@ -7,29 +7,29 @@ const getUsers = async () => {
     console.log(users)
     return users
 }
+const addInputs = (request, params) => {
+    for (const [key, { type, value }] of Object.entries(params)) {
+        request.input(key, type, value);
+    }
+    return request;
+};
+
 const createUser = async (user) => {
     try {
-      let pool = await sql.connect(config)
-  
-      let id = 6
-        console.log(id, user)
-        await pool.request()
-        .input('id', sql.Int, id)
-        .input('name', sql.NVarChar, user.name)
-        .input('rank', sql.NVarChar, user.rank)
-        .input('most_played', sql.Int, user.mostPlayed)
-        .query(`
-            INSERT INTO users (id, name, rank, most_played) 
-            VALUES (@id, @name, @rank, @most_played)
-        `);
-  
-      console.log(user)
-      return { success: true }
+        let pool = await sql.connect(config);
+
+        const query = `INSERT INTO users (name, rank, most_played) VALUES ('${user.name}', '${user.rank}', ${user.most_played})`;
+        console.log('Executing query:', query);
+
+        await pool.request().query(query);
+        console.log('Query executed successfully');
+        
+        return { success: true };
     } catch (error) {
-      console.error('Error creating user:', error)
-      return { success: false, error: error.message }
+        console.error('Error creating user:', error);
+        return { success: false, error: error.message };
     }
-  }
+};
   
 
 module.exports = {
