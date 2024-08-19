@@ -1,6 +1,7 @@
 const config = require('./dbconfig')
 const sql = require('mssql')
 
+
 const getUsers = async () => {
     let pool = await sql.connect(config)
     let users = pool.request().query('select * from users')
@@ -16,23 +17,23 @@ const addInputs = (request, params) => {
 
 const createUser = async (user) => {
     try {
-        let pool = await sql.connect(config);
+        let pool = await sql.connect(config)
 
-        const query = `INSERT INTO users (name, rank, most_played) VALUES ('${user.name}', '${user.rank}', ${user.most_played})`;
-        console.log('Executing query:', query);
+        const query = `INSERT INTO users (name, rank, most_played) VALUES ('${user.name}', '${user.rank}', ${user.most_played})`
+        console.log('Executing query:', query)
 
-        await pool.request().query(query);
-        console.log('Query executed successfully');
+        await pool.request().query(query)
+        console.log('Query executed successfully')
         
-        return { success: true };
+        return { success: true }
     } catch (error) {
-        console.error('Error creating user:', error);
-        return { success: false, error: error.message };
+        console.error('Error creating user:', error)
+        return { success: false, error: error.message }
     }
 };
   
 
 module.exports = {
     getUsers,
-    createUser
+    createUser,
 }

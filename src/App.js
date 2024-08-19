@@ -11,7 +11,7 @@ function App() {
   })
 
   const setInput = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setUser((prevState) => ({
       ...prevState,
       [name]: value,
@@ -26,11 +26,11 @@ function App() {
         'Accept': 'application/json',
       },
       body: JSON.stringify(user)
-    })
-    .then(res => res.json())
+    }).then(res => res.json())
+
     console.log(newData)
   }
-  
+
 
   return (
     <div>
