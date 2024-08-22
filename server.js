@@ -10,16 +10,45 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-app.post('/api', async function (req, res){
+app.post('/create', async function (req, res){
     await dboperation.createUser(req.body)
     const users = await dboperation.getUsers()
     res.send(users)
  })
 
- app.get('/hello', function (req, res) {
-     console.log('called')
-    // res.send({result: 'omg hi'})
+ app.get('/get', async function (req, res) {
+   console.log('called getusers')
+   const users = await dboperation.getUsers()
+   res.send(users)
 })
+
+ app.get('/champions', async function (req, res) {
+   console.log('called getChampions')
+   const users = await dboperation.getChampions()
+   res.send(users)
+})
+
+ app.post('/update', async function (req, res){
+    console.log(req.body)
+    await dboperation.updateUser(req.body)
+    const users = await dboperation.getUsers()
+    res.send(users)
+ })
+
+ app.post('/delete', async function (req, res){
+    await dboperation.deleteUser(req.body.id)
+    const users = await dboperation.getUsers()
+    res.send(users)
+ })
+
+
+
+ app.get('/leagueapi', async function (req, res) {
+    console.log('called leagueuserwithapi')
+    const users = await dboperation.getApiUser()
+    res.send(users)
+})
+
 
 const Yikes = new user('Yikes', 'Silver', 3)
 
