@@ -43,9 +43,9 @@ app.post('/create', async function (req, res){
 
 
 
- app.get('/leagueapi', async function (req, res) {
-    console.log('called leagueuserwithapi')
-    const users = await dboperation.getApiUser()
+ app.get('/sikamastery', async function (req, res) {
+    console.log('called sikamastery')
+    const users = await dboperation.sikamastery()
     res.send(users)
 })
 

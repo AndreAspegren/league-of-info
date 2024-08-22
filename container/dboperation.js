@@ -62,26 +62,12 @@ async function deleteUser(userid) {
     }
   }
 
-  async function getApiUser(){
-    try {
-        const response = await axios.get('https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/Sik%C3%A1/%23EUW', {
-          headers: {
-            "X-Riot-Token": "RGAPI-cb921e72-4ce8-49bf-b798-d8ca5f868dc1"
-          }
-        });
-        return json(response.data)
-      } catch (error) {
-        return status(500).json({ error: error.message });
-      }
-  }
-  
-  
 
 module.exports = {
     createUser,
     getUsers,
     updateUser,
     deleteUser,
-    getApiUser,
-    getChampions
+    getChampions,
 }
+
