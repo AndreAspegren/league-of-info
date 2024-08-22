@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 function App() {
+  
   const [user, setUser] = useState({
     name: '',
     rank: '',

@@ -41,20 +41,4 @@ app.post('/create', async function (req, res){
     res.send(users)
  })
 
-
-
- app.get('/sikamastery', async function (req, res) {
-    console.log('called sikamastery')
-    const users = await dboperation.sikamastery()
-    res.send(users)
-})
-
-
-const Yikes = new user('Yikes', 'Silver', 3)
-
-
-
-
-// dboperation.createUser(Yikes)
-
 app.listen(api_port, () => console.log(`listening on port ${api_port}`))
